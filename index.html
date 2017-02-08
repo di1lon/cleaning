@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+  <head>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<!--<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/themes/smoothness/jquery-ui.css" />-->
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"></script>
+<script src="jquery.ui.touch-punch.min.js"></script>
+
+<link rel="stylesheet" href="animate.css">
+
+<link href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700' rel='stylesheet' type='text/css'>
+<style>
+
+
+
+html {
+	font-family:Arial, Helvetica, sans-serif;
+	background-color:#fff;
+	background-image:url(office.jpg);
+	background-size:cover;
+	font-family: 'Roboto', sans-serif;
+	font-weight:100;
+	color:#fff;
+	text-align:left;
+	height:100%;
+
+}
+body { background-color:rgba(0,0,0,0.4); width:100%; height:100vh; margin:0px; padding:0px; }
+
+#sortable {
+	/*list-style:none;*/
+	-webkit-animation-iteration-count: 1;
+  animation-iteration-count: 1;
+  background-color:rgba(0,0,0,0.65);
+  height:100%;
+  margin:0 0 0 0;
+  padding:10% 0 0 15%;
+  width:25%;
+
+}
+
+#sortable li {
+	/*background-color:rgba(0,0,0,0.8);*/
+	margin:0 0 8px 0;
+	padding: 1em;
+	font-size: 2em;
+	height: 20px;
+	border-radius:20px;
+	cursor:pointer;
+}
+#sortable li:hover {
+	font-weight:400 ;
+	
+	}
+
+h1 {font-size:60px;}
+
+.cleaner {
+	/*color:red;*/
+	font-weight:400;
+	color:#3CF;
+	
+	}
+	
+.cleaner::after {
+	content:" cleans this week";
+	}
+	
+.last {
+	
+	}	
+
+.last::after {
+	content:" cleaned last week";
+	}
+	
+</style>
+<script>
+  
+$( document ).ready(function() {
+	//alert(localStorage.List);
+    $("#sortable").html(localStorage.List);
+});
+  
+  
+  $(function() {
+    $( "#sortable" ).sortable( {
+		stop: function( ) {
+			//$( "#sortable li" ).css( "background-color", "rgba(0,0,0,0.8)" );
+            $( "#sortable li" ).removeClass();
+			//$( "#sortable li" ).first().css( "background-color", "cyan" );
+			//$( "#sortable li" ).first().addClass("cleaner animated infinite pulse");
+			$( "#sortable li" ).first().addClass("cleaner");
+			$( "#sortable li" ).last().addClass("last");
+			var listOrder = $("#sortable").html();
+			// Store UL content in local
+			localStorage.clear();
+			localStorage.List = listOrder;
+        	}
+	}
+		);
+    $( "#sortable" ).disableSelection();
+	//$( "#sortable li" ).first().css( "background-color", "cyan" );
+	$( "#sortable li" ).first().addClass("cleaner");
+	
+	
+  });
+  </script>
+  </head>
+  <body>
+
+
+<!--<h1>Who cleans this week?</h1>-->
+  
+  <ol id="sortable">
+    <li>Dillon</li>
+    <li>Josh</li>
+    <li>Lloyd</li>
+    <li>Jay</li>
+    <li>Abhijeet</li>
+    <li>Shany</li>
+  </ol>
+  
+</body>
+</html>
